@@ -37,6 +37,7 @@
 #include "../inc/PLL.h"
 #include "../inc/tm4c123gh6pm.h"
 #include "../inc/Timer0A.h"
+#include "screen.h"
 #include "Lab3.h"
 // ---------- Prototypes   -------------------------
 void DisableInterrupts(void); // Disable interrupts
@@ -47,8 +48,10 @@ int main(void){
   PLL_Init(Bus80MHz);    // bus clock at 80 MHz
   // write this
   EnableInterrupts();
+	screenInit(INITR_GREENTAB);
   while(1){
       // write this
+		
   }
 }
 

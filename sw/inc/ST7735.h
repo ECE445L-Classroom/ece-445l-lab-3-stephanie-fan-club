@@ -121,7 +121,7 @@ enum initRFlags{
 };
 
 #define ST7735_TFTWIDTH  128
-#define ST7735_TFTHEIGHT 160
+#define ST7735_TFTHEIGHT 180
 
 
 // Color definitions
