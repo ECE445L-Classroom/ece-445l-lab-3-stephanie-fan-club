@@ -7,6 +7,8 @@
 #include "../inc/PLL.h"
 #include "../inc/tm4c123gh6pm.h"
 
-
+void switchInit();
+int switch1Pressed();
+int switch2Pressed();
 
 #endif

@@ -39,7 +39,10 @@
 #include "../inc/Timer0A.h"
 #include "screen.h"
 #include "inc/UART.h"
+#include "buttons.h"
 #include "Lab3.h"
+
+
 // ---------- Prototypes   -------------------------
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
@@ -57,11 +60,18 @@ int main(void){
   UART_Init();
 	screenInit(INITR_GREENTAB);
   EnableInterrupts();
-	
+
+
 	Timer0A_Init(secondsInc,80000000,0);
 
-  drawCircle(60, 90, 50, 150);
+	switchInit();
+	
 
-  while(1){ }
+  while(1){
+		if (switch1Pressed()) {
+			cycleMenuSelect();
+		}
+			
+	}
 }
 

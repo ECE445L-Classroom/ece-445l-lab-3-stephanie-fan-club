@@ -1,14 +1,30 @@
 #include "buttons.h"
 
+#include "../inc/LaunchPad.h"
 
+const uint32_t pin0 = 0x1;
+const uint32_t pin4 = 0x10;
+const uint32_t portf = 0x20;
+
+int sw1Pressed = 0;
+
+// Init for PF4 and PF0 on board switches
 void switchInit(){
-	const uint32_t portf = 0x20;
-	const uint32_t pin0 = 0x1;
-	const uint32_t pin4 = 0x10;
+	LaunchPad_Init();
+}
+
+int switch1Pressed() {
+	int positive = GPIO_PORTF_DATA_R & pin4;
 	
-	SYSCTL_RCGCGPIO_R |= portf; //activate portf
-	while(!(SYSCTL_RCGCGPIO_R&portf)){}; // sets clock then waits for it
+	if (sw1Pressed) {
+		if (positive) sw1Pressed = 0;
+	}
+	else {
+		if (!positive) {
+			sw1Pressed = 1;
+			return 1;
+		}
+	}
 	
-	GPIO_PORTF_DIR_R &= ~(pin4|pin0);
-	GPIO_PORTF_DEN_R |= (pin4|pin0);		
+	return 0;
 }
