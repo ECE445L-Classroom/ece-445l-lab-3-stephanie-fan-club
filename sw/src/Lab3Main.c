@@ -44,12 +44,21 @@
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 void WaitForInterrupt(void);  // low power mode
+uint32_t seconds;
+
+void secondsInc(void){
+	seconds++;
+}
+
 int main(void){
   DisableInterrupts();
+	seconds = 0;
   PLL_Init(Bus80MHz);    // bus clock at 80 MHz
   UART_Init();
 	screenInit(INITR_GREENTAB);
   EnableInterrupts();
+	
+	Timer0A_Init(secondsInc,80000000,0);
 
   drawCircle(60, 90, 50, 150);
 

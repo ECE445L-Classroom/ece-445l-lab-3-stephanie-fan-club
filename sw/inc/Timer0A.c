@@ -35,7 +35,7 @@
                                             // 1:0 of GPTMTAMR and GPTMTBMR
 #define TIMER_TAMR_TACDIR       0x00000010  // GPTM Timer A Count Direction
 #define TIMER_TAMR_TAMR_PERIOD  0x00000002  // Periodic Timer mode
-#define TIMER_CTL_TAEN          0x00000001  // GPTM TimerA Enable
+#define TI2MER_CTL_TAEN          0x00000001  // GPTM TimerA Enable
 #define TIMER_IMR_TATOIM        0x00000001  // GPTM TimerA Time-Out Interrupt
                                             // Mask
 #define TIMER_ICR_TATOCINT      0x00000001  // GPTM TimerA Time-Out Raw
