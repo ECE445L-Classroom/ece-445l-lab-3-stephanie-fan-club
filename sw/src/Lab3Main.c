@@ -48,17 +48,30 @@
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 void WaitForInterrupt(void);  // low power mode
+uint32_t screenIndex;
+
+enum {
+	MAIN_MENU,
+	DISPLAY_CLOCK
+};
 
 
+
+void menuLoop(void ) {
+
+}
 
 int main(void){
   DisableInterrupts();
-  PLL_Init(Bus80MHz);    // bus clock at 80 MHz
-  UART_Init();
+
+    screenIndex = 0;
+	
+    PLL_Init(Bus80MHz);    // bus clock at 80 MHz
+    UART_Init();
 	clockinit();
 	screenInit(INITR_GREENTAB);
-  EnableInterrupts();
-	
+    EnableInterrupts();
+
 
 	switchInit();
 
@@ -69,8 +82,20 @@ int main(void){
 //		}
 		
 		if(refreshScreen){
+
 			refreshScreen = 0;
-			clockdisplay();			
+
+			switch(screenIndex) {
+				case MAIN_MENU:
+					showMenu();
+					break;
+				case DISPLAY_CLOCK:
+				    clockdisplay();
+				    break;
+				default:
+					break;
+			}
+			
 		}
 		
 			
