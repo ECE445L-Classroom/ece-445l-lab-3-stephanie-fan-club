@@ -449,6 +449,16 @@
               <FileType>1</FileType>
               <FilePath>..\inc\LaunchPad.c</FilePath>
             </File>
+            <File>
+              <FileName>clock.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\clock.c</FilePath>
+            </File>
+            <File>
+              <FileName>clock.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\clock.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -41,30 +41,23 @@
 #include "inc/UART.h"
 #include "buttons.h"
 #include "Lab3.h"
+#include "clock.h"
 
 
 // ---------- Prototypes   -------------------------
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 void WaitForInterrupt(void);  // low power mode
-uint32_t seconds, refreshScreen;
 
-void secondsInc(void){
-	seconds++;
-	refreshScreen = 1;
-}
+
 
 int main(void){
   DisableInterrupts();
-	seconds = 0;
-	refreshScreen = 0;
   PLL_Init(Bus80MHz);    // bus clock at 80 MHz
   UART_Init();
+	clockinit();
 	screenInit(INITR_GREENTAB);
-	Timer0A_Init(&secondsInc,80000000,0);
   EnableInterrupts();
-
-
 	
 
 	switchInit();
@@ -77,9 +70,7 @@ int main(void){
 		
 		if(refreshScreen){
 			refreshScreen = 0;
-			ST7735_SetCursor(10,7);
-			ST7735_OutUDec(seconds);
-			
+			clockdisplay();			
 		}
 		
 			
