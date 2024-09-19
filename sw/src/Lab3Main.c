@@ -50,9 +50,11 @@ int main(void){
   UART_Init();
 	screenInit(INITR_GREENTAB);
   EnableInterrupts();
+	
+	showMenu();
 
-  drawCircle(60, 90, 50, 150);
-
-  while(1){ }
+  while(1){
+		
+	}
 }
 
