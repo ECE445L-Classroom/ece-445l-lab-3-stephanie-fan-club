@@ -35,6 +35,8 @@
 #define DEL  0x7F
 
 
+#define DISABLE_USELESS_GARBAGE_IN_UART
+
 //------------UART_Init------------
 // Initialize the UART for 115,200 baud rate (assuming 80 MHz clock),
 // 8 bit word length, no parity bits, one stop bit, FIFOs enabled
@@ -117,6 +119,8 @@ void UART_OutUHex2(uint32_t number);
 // -- Modified by Agustinus Darmawan + Mingjie Qiu --
 void UART_InString(char *bufPt, uint16_t max);
 
+#ifndef DISABLE_USELESS_GARBAGE_IN_UART
+
 //------------Output_Init------------
 // Initialize the UART for 115,200 baud rate (assuming 16 MHz bus clock),
 // 8 bit word length, no parity bits, one stop bit, FIFOs enabled
@@ -124,3 +128,4 @@ void UART_InString(char *bufPt, uint16_t max);
 // Output: none
 void Output_Init(void);
 
+#endif

@@ -253,6 +253,8 @@ char character;
   *bufPt = 0;
 }
 
+#ifndef DISABLE_USELESS_GARBAGE_IN_UART
+
 // Print a character to UART.
 int fputc(int ch, FILE *f){
   if((ch == 10) || (ch == 13) || (ch == 27)){
@@ -295,6 +297,7 @@ void Output_On(void){    // Turns on the display
 void Output_Color(uint32_t newColor){ // Set color of future output 
   // not implemented on the UART
 }
+
 
 
 #ifdef __TI_COMPILER_VERSION__
@@ -363,3 +366,5 @@ void Output_Init(void){
 #endif
 
 
+
+#endif  // DISABLE_USELESS_GARBAGE_IN_UART

@@ -38,6 +38,7 @@
 #include "../inc/tm4c123gh6pm.h"
 #include "../inc/Timer0A.h"
 #include "screen.h"
+#include "inc/UART.h"
 #include "Lab3.h"
 // ---------- Prototypes   -------------------------
 void DisableInterrupts(void); // Disable interrupts
@@ -46,12 +47,12 @@ void WaitForInterrupt(void);  // low power mode
 int main(void){
   DisableInterrupts();
   PLL_Init(Bus80MHz);    // bus clock at 80 MHz
-  // write this
-  EnableInterrupts();
+  UART_Init();
 	screenInit(INITR_GREENTAB);
-  while(1){
-      // write this
-		
-  }
+  EnableInterrupts();
+
+  drawCircle(60, 90, 50, 150);
+
+  while(1){ }
 }
 
