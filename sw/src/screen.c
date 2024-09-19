@@ -151,14 +151,20 @@ void drawSnowman() {
 	
 }
 
+int menuIndex = 0;
+
+void cycleMenuSelect() {
+	menuIndex = (menuIndex + 1) % 4;
+	showMenu();
+}
+
 void showMenu() {
 	ST7735_DrawString(4, 2, "Display Clock", ST7735_BLUE);
 	ST7735_DrawString(4, 4, "Set Time", ST7735_BLUE);
 	ST7735_DrawString(4, 6, "Set Timer", ST7735_BLUE);
 	ST7735_DrawString(4, 8, "Start Timer", ST7735_BLUE);
 	
-	const int index = 0;
-	const int row = 2 + index * 2;
+	const int row = 2 + menuIndex * 2;
 	
 	// Select arrow
 	ST7735_DrawString(1, row, "->", ST7735_BLUE);
