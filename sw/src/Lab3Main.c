@@ -48,24 +48,34 @@ void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 void WaitForInterrupt(void);  // low power mode
 uint32_t seconds, refreshScreen;
+uint32_t screenIndex;
+
+enum {
+	MAIN_MENU,
+	DISPLAY_CLOCK
+};
 
 void secondsInc(void){
 	seconds++;
 	refreshScreen = 1;
 }
 
+void menuLoop(void ) {
+
+}
+
 int main(void){
   DisableInterrupts();
+	
 	seconds = 0;
 	refreshScreen = 0;
+	screenIndex = 0;
+	
   PLL_Init(Bus80MHz);    // bus clock at 80 MHz
   UART_Init();
 	screenInit(INITR_GREENTAB);
 	Timer0A_Init(&secondsInc,80000000,0);
   EnableInterrupts();
-
-
-	
 
 	switchInit();
 
@@ -76,9 +86,14 @@ int main(void){
 //		}
 		
 		if(refreshScreen){
-			refreshScreen = 0;
-			ST7735_SetCursor(10,7);
-			ST7735_OutUDec(seconds);
+			switch(screenIndex) {
+				case MAIN_MENU:
+					showMenu();
+					break;
+				case DISPLAY_CLOCK:
+				default:
+					break;
+			}
 			
 		}
 		
